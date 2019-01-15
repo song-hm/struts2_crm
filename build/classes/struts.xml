@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		<!-- 开启开发者模式 -->
+		<constant name="struts.devMode" value="true"></constant>
+		<!-- 动作配置 -->
+		<package name="customer" extends="struts-default" namespace="/customer">
+			<!-- 查询所有客户 -->
+			<action name="findAllCustomer" class="com.shm.action.CustomerAction" method="findAllCustomer"> 
+				<result name="findAllCustomer">/jsp/customer/list.jsp</result>
+			</action>
+			<!-- 获取添加客户页面 -->
+			<action name="addUICustomer" class="com.shm.action.CustomerAction" method="addUICustomer"> 
+				<result name="addUICustomer">/jsp/customer/add.jsp</result>
+			</action>
+			<!-- 添加客户 -->
+			<action name="addCustomer" class="com.shm.action.CustomerAction" method="addCustomer"> 
+<!-- 				<result name="addCustomer" type="redirect">/jsp/success.jsp</result> -->
+					<result name="addCustomer" type="redirect">findAllCustomer</result> 
+			</action>
+			<!-- 删除客户 -->
+			<action name="deleteCustomer" class="com.shm.action.CustomerAction" method="deleteCustomer"> 
+					<result name="deleteCustomer" type="redirect">findAllCustomer</result> 
+			</action>
+		</package>
+		
+		<package name="linkman" extends="struts-default" namespace="/linkman">
+			<!-- 查询联系人列表 -->
+			<action name="listLinkman" class="com.shm.action.LinkmanAction" method="listLinkman">
+				<result name="listLinkman">/jsp/linkman/list.jsp</result>
+			</action>
+		</package>
+	</struts>
